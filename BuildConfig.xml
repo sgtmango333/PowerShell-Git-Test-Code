@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Process LogMessageLevel="0" ConsoleMessageLevel="0" LogFolderPath="I:\DMLTest\TFS_BUILD_OUT\LOG\DBATeam\DMLTest\">
+
+	<Loop IterationCount="1" >
+		<Script ServerName="SQLFACT" DBName="master" FilePath="I:\DMLTest\TFS_BUILD_IN\DBATeam\DMLTest\Build\PreBuild\RestoreSQLFACT.sql" />
+		<Script ServerName="SQLFACT" DBName="FACETSCD" FilePath="I:\DMLTest\TFS_BUILD_IN\DBATeam\DMLTest\Build\PreBuild\CreateSomeTbl.sql" />		
+	</Loop>
+
+	<Loop IterationCount="1" >
+
+		<Loop IterationCount="3" >
+			<Script ServerName="SQLFACT" DBName="FACETSCD" FolderPath="I:\DMLTest\TFS_BUILD_IN\DBATeam\DMLTest\SQLFACT\FACETSCD\" />
+
+			<TsqlOutput WriteEachIteration="False" AddGoTermination="True" OutputFilePath="I:\DMLTest\TFS_BUILD_OUT\OUTPUT\DBATeam\DMLTest\Build_[ServerName]_[DateTime].SQL" />
+		</Loop>
+
+		<PackageOutput OutputFilePath="I:\DMLTest\TFS_BUILD_OUT\DEPLOY\DBATeam\DMLTest\DeployPkg_[DateTime].dpkg" />
+	</Loop>
+</Process>
