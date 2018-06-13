@@ -1,4 +1,5 @@
 USE [DatabaseName]
 
 Select *
-from aTableThatDoesNotExist;
+from aTableThatDoesNotExist
+Where SomeCol='Not really here';
